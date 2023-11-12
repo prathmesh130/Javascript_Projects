@@ -71,6 +71,10 @@ function CheckCalRemaingColor() {
         x.classList.remove('bg-red-500')
     }
 }
+
+function deleteWorkout(e) {
+    console.log(e)
+}
 closeModal.addEventListener('click', closeModalFunction)
 
 addMeal.addEventListener('click', () => {
@@ -104,6 +108,7 @@ addMeal.addEventListener('click', () => {
     mealInput.value = '';
     CalculateProgressBar();
     CheckCalRemaingColor();
+    node.addEventListener('click', deleteWorkout)
 })
 
 addWork.addEventListener('click', () => {
