@@ -26,7 +26,7 @@ const mealInput = document.getElementById('mealInput')
 const mealCalInput = document.getElementById('mealCalInput')
 const workInput = document.getElementById('workInput')
 const workCalInput = document.getElementById('workCalInput')
-const mealArray = [];
+let mealArray = [];
 let ToalMealCount = 0
 let TotalWorkCount = 0
 
@@ -34,6 +34,7 @@ stLimitbtn.addEventListener('click', () => {
     modal.classList.remove('hidden');
     content.classList.add('brightness-50');
 })
+
 reset.addEventListener('click', () => {
     dailyCal.innerText = 0
     gain_loss.innerText = 0
@@ -73,12 +74,14 @@ function CheckCalRemaingColor() {
 }
 
 function deleteWorkout(e) {
-    console.log(e)
+    document.getElementById(e.srcElement.id).remove();
+    mealArray = mealArray.filter(x => x !== e.srcElement.id)
 }
 closeModal.addEventListener('click', closeModalFunction)
 
 addMeal.addEventListener('click', () => {
     const node = document.createElement("div");
+    node.id = mealInput.value
     node.classList.add('border');
     node.classList.add('p-4')
     node.classList.add('my-1')
@@ -94,6 +97,7 @@ addMeal.addEventListener('click', () => {
     textnode2.innerText = mealCalInput.value
     const cross = document.createElement("div");
     cross.innerText = '❌'
+    cross.id = mealInput.value
     cross.classList.add('cursor-pointer');
     node.classList.add(`justify-between`)
     node.appendChild(textnode);
@@ -109,7 +113,7 @@ addMeal.addEventListener('click', () => {
     mealInput.value = '';
     CalculateProgressBar();
     CheckCalRemaingColor();
-    node.addEventListener('click', deleteWorkout)
+    cross.addEventListener('click', deleteWorkout)
 
 })
 
