@@ -26,7 +26,7 @@ const mealInput = document.getElementById('mealInput')
 const mealCalInput = document.getElementById('mealCalInput')
 const workInput = document.getElementById('workInput')
 const workCalInput = document.getElementById('workCalInput')
-
+const mealArray = [];
 let ToalMealCount = 0
 let TotalWorkCount = 0
 
@@ -104,11 +104,13 @@ addMeal.addEventListener('click', () => {
     ToalMealCount += Number(mealCalInput.value)
     gain_loss.innerText = ToalMealCount - TotalWorkCount;
     calRemain.innerText = Number(dailyCal.innerText) - Number(gain_loss.innerText)
+    mealArray.push(mealInput.value)
     mealCalInput.value = '';
     mealInput.value = '';
     CalculateProgressBar();
     CheckCalRemaingColor();
     node.addEventListener('click', deleteWorkout)
+
 })
 
 addWork.addEventListener('click', () => {
